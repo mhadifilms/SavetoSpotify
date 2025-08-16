@@ -1,0 +1,81 @@
+{
+  "manifest_version": 3,
+  "name": "Save To Spotify",
+  "version": "0.1.0",
+  "description": "Save the currently playing song from popular music sites to your Spotify playlists or Liked Songs.",
+  "action": {
+    "default_title": "Save To Spotify",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "options_page": "options.html",
+  "permissions": [
+    "storage",
+    "identity",
+    "activeTab",
+    "scripting",
+    "tabs"
+  ],
+  "host_permissions": [
+    "https://api.spotify.com/*",
+    "https://accounts.spotify.com/*",
+    "https://*.youtube.com/*",
+    "https://youtu.be/*",
+    "https://music.youtube.com/*",
+    "https://soundcloud.com/*",
+    "https://*.soundcloud.com/*",
+    "https://music.apple.com/*",
+    "https://music.amazon.com/*",
+    "https://www.deezer.com/*",
+    "https://www.pandora.com/*",
+    "https://listen.tidal.com/*",
+    "https://tidal.com/*",
+    "https://bandcamp.com/*",
+    "https://*.bandcamp.com/*",
+    "https://open.spotify.com/*",
+    "https://www.shazam.com/*",
+    "https://shazam.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.youtube.com/*",
+        "https://youtu.be/*",
+        "https://music.youtube.com/*",
+        "https://soundcloud.com/*",
+        "https://*.soundcloud.com/*",
+        "https://music.apple.com/*",
+        "https://music.amazon.com/*",
+        "https://www.deezer.com/*",
+        "https://www.pandora.com/*",
+        "https://listen.tidal.com/*",
+        "https://tidal.com/*",
+        "https://bandcamp.com/*",
+        "https://*.bandcamp.com/*",
+        "https://open.spotify.com/*",
+        "https://www.shazam.com/*",
+        "https://shazam.com/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_idle",
+      "all_frames": false
+    }
+  ]
+}

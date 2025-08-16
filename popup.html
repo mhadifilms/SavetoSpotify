@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Save To Spotify</title>
+	<link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+	<div id="app">
+		<div class="row header">
+			<div class="title">Save To Spotify</div>
+			<div class="header-actions">
+				<img id="userAvatar" class="avatar hidden" alt="" />
+				<button id="loginBtn" class="btn">Connect Spotify</button>
+				<button id="optionsBtn" class="btn hidden">Options</button>
+			</div>
+		</div>
+		<div id="status" class="status">Waiting…</div>
+		<div id="track" class="card hidden">
+			<div class="label">Detected</div>
+			<div id="detectedTitle" class="track-title"></div>
+			<div id="detectedArtist" class="track-artist"></div>
+		</div>
+		<div id="match" class="card hidden">
+			<div class="label">Match</div>
+			<div id="matchTitle" class="track-title"></div>
+			<div id="matchArtist" class="track-artist"></div>
+		</div>
+		<div id="actions" class="hidden">
+			<label class="label">Save to</label>
+			<div class="search-container">
+				<input id="playlistSearch" type="text" placeholder="Search playlists..." class="search-input" />
+			</div>
+			<select id="playlistSelect"></select>
+			<div class="row">
+				<input id="newPlaylistName" placeholder="New playlist name" class="hidden" />
+				<button id="saveBtn" class="btn primary">Save to Spotify</button>
+			</div>
+		</div>
+	</div>
+	<script type="module" src="popup.js"></script>
+</body>
+</html>
