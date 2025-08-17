@@ -1,4 +1,4 @@
-## Save To Spotify – Chrome Extension
+## ![](/icons/icon32.png) Save To Spotify – Chrome Extension
 
 Save the currently focused song from major streaming sites to your Spotify account (Liked Songs or any playlist; create a new one too).
 
