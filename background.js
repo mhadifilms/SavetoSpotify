@@ -349,12 +349,18 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
 					break;
 				}
 				case 'getPlaylists': {
-					const api = await getApi();
-					const playlists = await api.getUserPlaylists();
-					// Filter to only show playlists user owns or collaborates on
-					const filteredPlaylists = playlists.filter(p => p.owner || p.collaborative);
-					filteredPlaylists.sort((a, b) => a.name.localeCompare(b.name));
-					sendResponse({ ok: true, playlists: filteredPlaylists });
+					try {
+						const api = await getApi();
+						const playlists = await api.getUserPlaylists();
+						
+						// Sort alphabetically and return all playlists
+						playlists.sort((a, b) => a.name.localeCompare(b.name));
+						sendResponse({ ok: true, playlists: playlists });
+						
+					} catch (error) {
+						console.error('Error getting playlists:', error);
+						sendResponse({ ok: false, error: String(error) });
+					}
 					break;
 				}
 				case 'addToPlaylist': {

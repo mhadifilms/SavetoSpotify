@@ -68,9 +68,17 @@ async function searchMatch(target) {
 }
 
 async function getPlaylists() {
-	const res = await chrome.runtime.sendMessage({ type: 'getPlaylists' });
-	if (!res?.ok) throw new Error(res?.error || 'Playlists failed');
-	return res.playlists;
+	try {
+		const res = await chrome.runtime.sendMessage({ type: 'getPlaylists' });
+		
+		if (!res?.ok) {
+			throw new Error(res?.error || 'Playlists failed');
+		}
+		
+		return res.playlists;
+	} catch (error) {
+		throw error;
+	}
 }
 
 async function getMe() {
