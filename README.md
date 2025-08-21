@@ -1,5 +1,7 @@
 ## ![](/icons/icon32.png) Save To Spotify – Chrome Extension
 
+[Download on the Chrome Web Store](https://chromewebstore.google.com/detail/save-to-spotify/hbonmfkjcjojdiclaifeahldemdhpjln)
+
 Save the currently focused song from major streaming sites to your Spotify account (Liked Songs or any playlist; create a new one too).
 
 Supported sites: YouTube, YouTube Music, SoundCloud, Apple Music (web), Amazon Music, Deezer, Tidal, Pandora, Bandcamp, Spotify Web Player. Uses Media Session API where available as a fallback.
