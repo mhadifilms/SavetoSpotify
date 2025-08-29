@@ -7,35 +7,71 @@
 	<link rel="stylesheet" href="popup.css" />
 </head>
 <body>
-	<div id="app">
-		<div class="row header">
-			<div class="title">Save To Spotify</div>
-			<div class="header-actions">
-				<img id="userAvatar" class="avatar hidden" alt="" />
-				<button id="loginBtn" class="btn">Connect Spotify</button>
-				<button id="optionsBtn" class="btn hidden">Options</button>
+	<div class="overlay-container">
+		<div class="container" id="app">
+			<div class="row header">
+				<div class="title">Save To Spotify</div>
+				<div class="header-actions">
+					<img id="userAvatar" class="avatar hidden" />
+					<button id="loginBtn" class="btn primary">Connect Spotify</button>
+					<button id="optionsBtn" class="btn hidden">Options</button>
+				</div>
 			</div>
-		</div>
-		<div id="status" class="status">Waiting…</div>
-		<div id="track" class="card hidden">
-			<div class="label">Detected</div>
-			<div id="detectedTitle" class="track-title"></div>
-			<div id="detectedArtist" class="track-artist"></div>
-		</div>
-		<div id="match" class="card hidden">
-			<div class="label">Match</div>
-			<div id="matchTitle" class="track-title"></div>
-			<div id="matchArtist" class="track-artist"></div>
-		</div>
-		<div id="actions" class="hidden">
-			<label class="label">Save to</label>
-			<div class="search-container">
-				<input id="playlistSearch" type="text" placeholder="Search playlists..." class="search-input" />
+			<div id="status" class="status">Waiting…</div>
+			<div id="track" class="card hidden">
+				<div class="label">Detected</div>
+				<div class="track-title" id="detectedTitle"></div>
+				<div class="track-artist" id="detectedArtist"></div>
 			</div>
-			<select id="playlistSelect"></select>
-			<div class="row">
-				<input id="newPlaylistName" placeholder="New playlist name" class="hidden" />
-				<button id="saveBtn" class="btn primary">Save to Spotify</button>
+			<div id="match" class="card hidden">
+				<div class="label">Match</div>
+				<div class="track-title" id="matchTitle"></div>
+				<div class="track-artist" id="matchArtist"></div>
+			</div>
+			<div id="actions" class="hidden">
+				<div id="defaultView" class="view">
+					<label class="label">Save to</label>
+					<div class="default-playlist">
+						<div class="playlist-item selected" data-id="__liked__">
+							<div class="playlist-cover liked-cover"></div>
+							<div class="playlist-info">
+								<div class="playlist-name">Liked Songs</div>
+							</div>
+						</div>
+					</div>
+					<button id="selectPlaylistBtn" class="btn secondary">Select Different Playlist</button>
+					<div class="row">
+						<input id="newPlaylistName" placeholder="New playlist name" class="hidden" />
+						<button id="saveBtn" class="btn primary">Save to Spotify</button>
+					</div>
+				</div>
+				<div id="playlistSelector" class="view hidden">
+					<div class="playlist-header">
+						<button id="backToDefaultBtn" class="btn-icon" title="Back" aria-label="Back">
+							<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M15 19L8 12L15 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+							</svg>
+						</button>
+						<h3>Select Playlist</h3>
+					</div>
+					<div class="search-container">
+						<input id="playlistSearch" type="text" placeholder="Find or create new playlist..." class="search-input" />
+					</div>
+					<div id="playlistList" class="playlist-list"></div>
+					<div class="playlist-actions">
+						<button id="createPlaylistBtn" class="btn primary">Create New Playlist</button>
+					</div>
+					<div id="createForm" class="create-form hidden">
+						<div class="field">
+							<label for="newPlaylistNameInput">Playlist Name</label>
+							<input id="newPlaylistNameInput" type="text" placeholder="Enter playlist name..." class="search-input" />
+						</div>
+						<div class="create-actions">
+							<button id="cancelCreateBtn" class="btn">Cancel</button>
+							<button id="confirmCreateBtn" class="btn primary">Create</button>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

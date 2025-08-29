@@ -160,7 +160,8 @@ class SpotifyApi {
 		let url = '/me/playlists?limit=50';
 		while (url) {
 			const data = await this._fetch(url.replace(this.base, ''));
-			items.push(...data.items.map(p => ({ id: p.id, name: p.name })));
+			// Preserve full playlist objects so consumers can access images, etc.
+			items.push(...(data.items || []));
 			url = data.next;
 		}
 		return items;
@@ -345,7 +346,13 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
 						title: message.payload?.title || '',
 						artists: message.payload?.artist || ''
 					});
-					sendResponse({ ok: true, match });
+					
+					// Better song not found detection
+					if (!match || match.score < 3) { // Require minimum score for quality match
+						sendResponse({ ok: true, match: null, noMatch: true });
+					} else {
+						sendResponse({ ok: true, match });
+					}
 					break;
 				}
 				case 'getPlaylists': {
@@ -353,7 +360,7 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
 						const api = await getApi();
 						const playlists = await api.getUserPlaylists();
 						
-						// Sort alphabetically and return all playlists
+						// Return full playlist data including images
 						playlists.sort((a, b) => a.name.localeCompare(b.name));
 						sendResponse({ ok: true, playlists: playlists });
 						

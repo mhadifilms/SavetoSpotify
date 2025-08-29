@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Save To Spotify",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Save the currently playing song from popular music sites to your Spotify playlists or Liked Songs.",
   "action": {
     "default_title": "Save To Spotify",
@@ -44,6 +44,12 @@
     "https://open.spotify.com/*",
     "https://www.shazam.com/*",
     "https://shazam.com/*"
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["popup.html", "popup.css", "popup.js", "icons/*"],
+      "matches": ["https://www.shazam.com/*", "https://shazam.com/*"]
+    }
   ],
   "background": {
     "service_worker": "background.js",

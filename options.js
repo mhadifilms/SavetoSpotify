@@ -1,4 +1,5 @@
 const KEY = 'spotifyClientId';
+const KEY_SHAZAM = 'enableShazamButton';
 
 function $(id) { return document.getElementById(id); }
 
@@ -15,8 +16,9 @@ async function init() {
 	try {
 		const redirect = chrome.identity.getRedirectURL('callback');
 		$('redirect').textContent = redirect;
-		const obj = await chrome.storage.sync.get(KEY);
+		const obj = await chrome.storage.sync.get([KEY, KEY_SHAZAM]);
 		if (obj && obj[KEY]) $('clientId').value = obj[KEY];
+		$('shazamToggle').checked = obj[KEY_SHAZAM] !== false; // default true
 	} catch (e) {
 		$('status').textContent = 'Error initializing options: ' + (e?.message || e);
 	}
@@ -40,7 +42,7 @@ $('save').addEventListener('click', async () => {
 			$('status').textContent = '❌ Please enter a Client ID';
 			return;
 		}
-		await chrome.storage.sync.set({ [KEY]: clientId });
+		await chrome.storage.sync.set({ [KEY]: clientId, [KEY_SHAZAM]: $('shazamToggle').checked });
 		$('status').textContent = '✓ Settings saved successfully';
 		setTimeout(() => $('status').textContent = '', 2000);
 	} catch (e) {

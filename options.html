@@ -9,25 +9,46 @@
 <body>
 	<div class="container">
 		<h2>Save To Spotify</h2>
-		<p class="sub">Create an app in the <a href="https://developer.spotify.com/dashboard" target="_blank" rel="noreferrer">Spotify Developer Dashboard</a>. Add the Redirect URI below to your app settings, then paste your Client ID.</p>
-		
-		<div class="field">
-			<label for="clientId">Spotify Client ID</label>
-			<input id="clientId" placeholder="e.g. 123abc456def..." />
-		</div>
-		
-		<div class="actions">
-			<button id="save" class="btn primary">Save Settings</button>
-			<button id="test" class="btn">Test Connection</button>
-			<span id="status" class="muted"></span>
-		</div>
-		
+		<p class="sub">
+			To connect your Spotify account, you need a one-time setup in the
+			<a href="https://developer.spotify.com/dashboard" target="_blank" rel="noreferrer">Spotify Developer Dashboard</a>.
+		</p>
+		<ol class="sub" style="margin-top:-6px; padding-left: 18px;">
+			<li>Sign in, click “Create app”, and give it any name.</li>
+			<li>Open the app → Settings → “Redirect URIs” → click “Add Redirect URI”.</li>
+			<li>Paste the URI shown below, then click “Save”.</li>
+			<li>Copy the “Client ID” from the app’s overview and paste it here.</li>
+		</ol>
+
+		<!-- Redirect URI moved up here -->
 		<div class="redirect">
 			<div class="muted">Redirect URI to add in Spotify Dashboard</div>
 			<div class="redirect-row">
 				<code id="redirect"></code>
 				<button id="copyRedirect" class="btn">Copy</button>
 			</div>
+		</div>
+
+		<div class="field">
+			<label for="clientId">Spotify Client ID</label>
+			<input id="clientId" placeholder="e.g. 123abc456def..." />
+		</div>
+
+		<div class="field row-between">
+			<div>
+				<label for="shazamToggle">Shazam: show "Save to Spotify" button</label>
+				<div class="muted">Uncheck to hide the embedded button on Shazam song pages.</div>
+			</div>
+			<label class="switch">
+				<input id="shazamToggle" type="checkbox" checked />
+				<span class="slider"></span>
+			</label>
+		</div>
+
+		<div class="actions">
+			<button id="save" class="btn primary">Save Settings</button>
+			<button id="test" class="btn">Test Connection</button>
+			<span id="status" class="muted"></span>
 		</div>
 	</div>
 	<script type="module" src="options.js"></script>
